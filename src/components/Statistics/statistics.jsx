@@ -1,22 +1,27 @@
 import PropTypes from 'prop-types';
+import s from './Statistics.module.css'
 
 export default function Statistics({ title, stats }) {
     return (
-        <section class="statistics">
-            <h2 class="title">{title}</h2>
+        <section className={s.statistics}>
+            <h2 className={s.title}>{title}</h2>
 
-            <ul class="stat-list">
+            <ul className={s.statList}>
                 {stats.map(({ id, label, percentage }) => {
                     return (
-                        <li class="item" key={id}>                            
-                            <span class="label">{label}</span>
-                            <span class="percentage">{percentage}%</span>
+                        <li className={s.item} style={{backgroundColor: getRandomHexColor()}} key={id}>                            
+                            <span className={s.label}>{label}</span>
+                            <span className={s.percentage}>{percentage}%</span>
                         </li>);
                 })}
         </ul>
         </section>
     );
 };
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 
 Statistics.propTypes = {
     title: PropTypes.string.isRequired,
